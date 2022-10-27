@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+
+    <style>
+
+        #bubblebox{width: 650;height:250px;margin:50px auto;border:1px solid#AAA;}
+        #bubbles{width: auto;margin:0px auto; text-align: center;}
+        #bubbles > div{display:inline-block;width: 10px;height: 10px;margin: 24px  10px 0px 10px;
+         border-radius: 100%;font-size: 17px;text-decoration: none;transition: background;}
+        #bubblecontent{margin:0px  auto;  transition: opacity 0.3s  linear 0s; font-family:'Arial'}
+        #bubblecontent>h2{text-align: center;color: #7ea800;}
+        #bubblecontent>p{font-size:17px;  line-height: 1.5em; padding: 20px 50px;  color:#777;}
+
+    </style>
+</head>
+<body>
+    <script>
+     function  _(x)  {return  document.getElementById(x);}
+     var  ba, bi=0, intrvl;
+     var bca = [
+  '<h2>Heading Number 1</h2><p>Content for section 1</p>',
+ '<h2>Heading Number 2</h2><p>Content for section 2</p>',
+ '<h2>Heading Number 3</h2><p>Content for section 3</p>',
+ '<h2>Heading Number 4</h2><p>Content for section 4</p>'
+];
+
+    function bubbles(bi){
+        _("bubblecontent").style.opacity=0;
+        for(var i=0;i<ba.length;i++){
+            ba[i].style.background="rgba(0,0,0,.1)";
+        }
+        ba[bi].style.background="#999";
+        setTimeout(function(){
+            _("bubblecontent").innerHTML=bca[bi];
+            _("bubblecontent").style.opactiy=1;
+        },300);
+        }
+
+     function bubbleSlide(){
+        bi++;
+        if(bi==ba.length){
+            bi=0;
+        }
+        bubbles(bi);
+     }   
+    window.addEventListener("load",function(){
+        ba=("bubbles").children;
+        intrvl=setInterval(bubbleSlide,10000);
+    });
+         
+
+    </script>
+
+ <div id="bubblebox">
+    <div id="bubbles">
+     <div onclick="bubbles(0); clearInterval(intrvl);" style="background: #999;"></div>
+     <div onclick="bubbles(1); clearInterval(intrvl);" ></div>
+     <div onclick="bubbles(2); clearInterval(intrvl);" ></div>
+     <div onclick="bubbles(3); clearInterval(intrvl);" ></div>
+    </div>
+
+
+     <div id="bubblecontent">
+          <h2>Heading Number 1</h2>
+          <p>Content for section 1</p>
+</div>
+ </div>
+
+
+
+</body>
+</html>
